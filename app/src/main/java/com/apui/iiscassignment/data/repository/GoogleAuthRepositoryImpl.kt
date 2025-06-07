@@ -3,14 +3,14 @@ package com.apui.iiscassignment.data.repository
 import android.util.Log
 import androidx.credentials.Credential
 import androidx.credentials.CustomCredential
-import com.apui.iiscassignment.domain.repository.AuthRepository
+import com.apui.iiscassignment.domain.repository.GoogleAuthRepository
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential.Companion.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 
-class AuthRepositoryImpl(private val auth: FirebaseAuth): AuthRepository {
+class GoogleAuthRepositoryImpl(private val auth: FirebaseAuth) : GoogleAuthRepository {
     override fun handleSignIn(credential: Credential, checkState: (FirebaseUser) -> Unit) {
         // Check if credential is of type Google ID
         if (credential is CustomCredential && credential.type == TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {

@@ -45,15 +45,19 @@ dependencies {
     //Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.15.0"))
     implementation("com.google.firebase:firebase-auth")
-    implementation("androidx.credentials:credentials:1.3.0")
-    implementation("androidx.credentials:credentials-play-services-auth:1.3.0")
+    implementation("androidx.credentials:credentials:1.5.0")
+    implementation("androidx.credentials:credentials-play-services-auth:1.5.0")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
 
     //koin
     val koin_version = "4.0.3"
     implementation(project.dependencies.platform("io.insert-koin:koin-bom:$koin_version"))
     implementation("io.insert-koin:koin-core")
-    implementation("io.insert-koin:koin-android:$koin_version")
+    implementation("io.insert-koin:koin-android")
+    implementation("io.insert-koin:koin-androidx-compose")
+    implementation("io.insert-koin:koin-compose-viewmodel")
+
+    implementation("androidx.navigation:navigation-compose:2.9.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

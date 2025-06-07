@@ -6,7 +6,7 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.apui.iiscassignment.domain.repository.AuthRepository
+import com.apui.iiscassignment.domain.repository.GoogleAuthRepository
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.apui.iiscassignment.R
 import com.google.firebase.auth.FirebaseUser
@@ -22,8 +22,8 @@ sealed interface AuthState {
     data object Idle : AuthState
 }
 
-class SignInViewModel(
-    private val authRepository: AuthRepository,
+class GoogleSignInViewModel(
+    private val authRepository: GoogleAuthRepository,
     context: Context
 ) : ViewModel() {
 
