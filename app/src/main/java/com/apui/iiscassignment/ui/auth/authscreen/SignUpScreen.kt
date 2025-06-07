@@ -26,17 +26,18 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.parametersOf
 
 @Composable
 fun SignUpScreen(
-    viewModel: GmailAuthViewModel = koinViewModel(),
     navController: NavHostController
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val context: Context = LocalContext.current
+    val viewModel: GmailAuthViewModel =
+        org.koin.compose.viewmodel.koinViewModel(parameters = { parametersOf(context) })
     val authState = viewModel.authState.collectAsStateWithLifecycle().value
-    val context:Context = LocalContext.current
 
     LaunchedEffect(authState) {
         when (authState) {
@@ -46,9 +47,12 @@ fun SignUpScreen(
                     popUpTo("signup") { inclusive = true }
                 }
             }
+
             is GmailAuthState.Unauthenticated -> {
-                Toast.makeText(context, authState.message ?: "Sign-up failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, authState.message ?: "Sign-up failed", Toast.LENGTH_SHORT)
+                    .show()
             }
+
             else -> Unit
         }
     }

@@ -14,10 +14,9 @@ import org.koin.dsl.module
 val authModule = module {
     single<FirebaseAuth> { FirebaseAuth.getInstance() }
     single<GmailAuthRepo> { GmailAuthRepoImpl(get()) }
-    viewModel {
-        GmailAuthViewModel(get())
+    viewModel { (context: Context) ->
+        GmailAuthViewModel(get(), context)
     }
-
     single<GoogleAuthRepository> { GoogleAuthRepositoryImpl(get()) }
     viewModel { (context: Context) -> GoogleSignInViewModel(get(), context) }
 }
