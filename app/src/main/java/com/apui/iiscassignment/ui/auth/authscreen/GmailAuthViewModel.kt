@@ -20,25 +20,35 @@ class GmailAuthViewModel(private val gmailAuthRepo: GmailAuthRepo) : ViewModel()
 
     fun signIn(email: String, password: String) {
         _authState.value = GmailAuthState.Loading
-        gmailAuthRepo.signInUserAccount(email, password) { result ->
-            result.onSuccess { user ->
-                _authState.value = GmailAuthState.Authenticated(user)
-            }.onFailure { e ->
-                Log.e("GmailAuthViewModel", "Sign-in failed", e)
-                _authState.value = GmailAuthState.Unauthenticated(e.message)
+        try {
+            gmailAuthRepo.signInUserAccount(email, password) { result ->
+                result.onSuccess { user ->
+                    _authState.value = GmailAuthState.Authenticated(user)
+                }.onFailure { e ->
+                    Log.e("GmailAuthViewModel", "Sign-in failed", e)
+                    _authState.value = GmailAuthState.Unauthenticated(e.message)
+                }
             }
+        } catch (e: Exception) {
+            Log.e("SignIn", "Sign-in failed", e)
+            _authState.value = GmailAuthState.Unauthenticated(e.message)
         }
     }
 
     fun signUp(email: String, password: String) {
         _authState.value = GmailAuthState.Loading
-        gmailAuthRepo.signUpUserAccount(email, password) { result ->
-            result.onSuccess { user ->
-                _authState.value = GmailAuthState.Authenticated(user)
-            }.onFailure { e ->
-                Log.e("GmailAuthViewModel", "Sign-up failed", e)
-                _authState.value = GmailAuthState.Unauthenticated(e.message)
+        try {
+            gmailAuthRepo.signUpUserAccount(email, password) { result ->
+                result.onSuccess { user ->
+                    _authState.value = GmailAuthState.Authenticated(user)
+                }.onFailure { e ->
+                    Log.e("GmailAuthViewModel", "Sign-up failed", e)
+                    _authState.value = GmailAuthState.Unauthenticated(e.message)
+                }
             }
+        } catch (e: Exception) {
+            Log.e("SignUp", "Sign-up failed", e)
+            _authState.value = GmailAuthState.Unauthenticated(e.message)
         }
     }
 }
