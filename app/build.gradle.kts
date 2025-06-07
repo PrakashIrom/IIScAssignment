@@ -49,7 +49,7 @@ dependencies {
     implementation("androidx.credentials:credentials-play-services-auth:1.5.0")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
 
-    //koin
+    //koin for di
     val koin_version = "4.0.3"
     implementation(project.dependencies.platform("io.insert-koin:koin-bom:$koin_version"))
     implementation("io.insert-koin:koin-core")
@@ -58,7 +58,7 @@ dependencies {
     implementation("io.insert-koin:koin-compose-viewmodel")
 
     implementation("androidx.navigation:navigation-compose:2.9.0")
-
+    implementation("androidx.core:core-splashscreen:1.0.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
