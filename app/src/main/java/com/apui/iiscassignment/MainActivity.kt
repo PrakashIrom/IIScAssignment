@@ -9,23 +9,18 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.apui.iiscassignment.ui.navigation.AppNavHost
 import com.apui.iiscassignment.ui.theme.IIScAssignmentTheme
-import com.google.firebase.auth.FirebaseAuth
-import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
 
-    private val auth: FirebaseAuth by inject()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         enableEdgeToEdge()
         setContent {
             val navController = rememberNavController()
