@@ -1,4 +1,4 @@
-package com.apui.iiscassignment.ui.auth.signin
+package com.apui.iiscassignment.ui.auth.authscreen
 
 import android.content.Context
 import android.util.Log

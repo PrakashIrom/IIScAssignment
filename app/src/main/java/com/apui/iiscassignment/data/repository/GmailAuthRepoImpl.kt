@@ -1,52 +1,28 @@
 package com.apui.iiscassignment.data.repository
 
-import android.content.Context
-import android.util.Log
-import android.widget.Toast
 import com.apui.iiscassignment.domain.repository.GmailAuthRepo
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
-class GmailAuthRepoImpl(private val auth: FirebaseAuth): GmailAuthRepo {
-
-    override fun signInUserAccount(email:String, password:String) {
+class GmailAuthRepoImpl(private val auth: FirebaseAuth) : GmailAuthRepo {
+    override fun signInUserAccount(email: String, password: String, callback: (Result<FirebaseUser>) -> Unit) {
         auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener{
-                    task ->
+            .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("Success", "signInWithEmail:success")
-                    val user = auth.currentUser
-                    //updateUI(user)
+                    callback(Result.success(auth.currentUser!!))
                 } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("SignIn fail", "signInWithEmail:failure", task.exception)
-                    /*Toast.makeText(
-                        ,
-                        "Authentication failed.",
-                        Toast.LENGTH_SHORT,
-                    ).show()*/
-                    //updateUI(null)
+                    callback(Result.failure(task.exception ?: Exception("Unknown error")))
                 }
             }
     }
 
-    override fun signUpUserAccount(email:String, password:String) {
+    override fun signUpUserAccount(email: String, password: String, callback: (Result<FirebaseUser>) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener{ task ->
+            .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    //Log.d(TAG, "createUserWithEmail:success")
-                    val user = auth.currentUser
-                    //updateUI(user)
+                    callback(Result.success(auth.currentUser!!))
                 } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("SignUp fail", "createUserWithEmail:failure", task.exception)
-                    /*Toast.makeText(
-                        baseContext,
-                        "Authentication failed.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
-                    updateUI(null)*/
+                    callback(Result.failure(task.exception ?: Exception("Unknown error")))
                 }
             }
     }

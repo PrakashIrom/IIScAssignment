@@ -1,19 +1,12 @@
 package com.apui.iiscassignment.ui.navigation
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.apui.iiscassignment.ui.HomeScreen
-import com.apui.iiscassignment.ui.auth.signin.AuthState
-import com.apui.iiscassignment.ui.auth.signin.SignInScreen
-import com.apui.iiscassignment.ui.auth.signin.SignInViewModel
-import org.koin.androidx.compose.getViewModel
-import org.koin.compose.viewmodel.koinViewModel
-import org.koin.core.parameter.parametersOf
+import com.apui.iiscassignment.ui.auth.authscreen.SignInScreen
+import com.apui.iiscassignment.ui.auth.authscreen.SignUpScreen
 
 @Composable
 fun AppNavHost(navController: NavHostController) {
@@ -30,6 +23,9 @@ fun AppNavHost(navController: NavHostController) {
         }
         composable("home") {
             HomeScreen()
+        }
+        composable("signup") {
+            SignUpScreen(navController = navController)
         }
     }
 

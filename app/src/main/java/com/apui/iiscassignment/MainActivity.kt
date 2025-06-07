@@ -44,27 +44,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    fun signUp(){
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this){
-                    task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("Success", "signInWithEmail:success")
-                    val user = auth.currentUser
-                    //updateUI(user)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("SignIn fail", "signInWithEmail:failure", task.exception)
-                    /*Toast.makeText(
-                        ,
-                        "Authentication failed.",
-                        Toast.LENGTH_SHORT,
-                    ).show()*/
-                    //updateUI(null)
-                }
-            }
-    }
     /* override fun onStart() {
          super.onStart()
          // Check if user is signed in (non-null) and update UI accordingly.
