@@ -10,9 +10,6 @@ import com.apui.iiscassignment.ui.auth.authscreen.SignUpScreen
 
 @Composable
 fun AppNavHost(navController: NavHostController) {
-    /*val context = LocalContext.current
-    val viewModel: SignInViewModel = koinViewModel(parameters = { parametersOf(context) })
-    val authState = viewModel.authState.collectAsState().value*/
 
     NavHost(
         navController = navController,

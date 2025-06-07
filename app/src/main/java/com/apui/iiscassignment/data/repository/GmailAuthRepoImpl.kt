@@ -64,14 +64,11 @@ class GmailAuthRepoImpl(private val auth: FirebaseAuth) : GmailAuthRepo {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                // Sign in success, update UI with the signed-in user's information
                 Log.d("SignIn Success", "signInWithCredential:success")
                 callback(Result.success(auth.currentUser!!))
             } else {
-                // If sign in fails, display a message to the user
                 Log.w("SignIn Fail", "signInWithCredential:failure", task.exception)
                 callback(Result.failure(task.exception ?: Exception("Unknown error")))
-                //updateUI(null)
             }
         }
     }
